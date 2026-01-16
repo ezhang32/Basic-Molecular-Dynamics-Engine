@@ -5,7 +5,7 @@ MDEngine is a compact, extensible molecular dynamics (MD) engine designed for ra
 - Langevin Dynamics Integrator
 Simulates particle motion under friction and stochastic thermal noise, enabling canonical ensemble sampling.
 - Configurable Physical Parameters
-Control particle count, box size, timestep, friction coefficient, thermal energy k_{\mathrm{B}}T, and particle size.
+Control particle count, box size, timestep, friction coefficient, thermal energy (KbT), and particle size.
 - 3D Simulation Box
 Particles evolve inside a cubic domain with periodic or reflective boundary handling (depending on your implementation).
 - Optional VPython Visualization
@@ -59,7 +59,7 @@ Responsibilities
 _calculate_rdf()_ — Radial Distribution Function
 Analyzes spatial structure by computing the radial distribution function g(r).
 Responsibilities
-- Bins pairwise distances into histogram
+- Bins pairwise distances into a histogram
 - Normalizes by ideal gas reference
 - Returns RDF curve for structural analysis
 
@@ -106,5 +106,8 @@ Responsibilities
 - Velocities
 - Energies
 - Speed distributions
+
+**Special Notes**
+Simulations can take anywhere from 30 seconds to 10 minutes, depending on the time steps, simulation time, and temperature. It's recommended that for KbT <= 1, run simulations with dt = 0.002 and simulation_time >= 25.0. Not doing so may cause the system not to equilibrate and/or the physics breaks down. 
 
 
